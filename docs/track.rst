@@ -4,9 +4,9 @@ Track Reference
 Definition
 ==========
 
-A track is a specification of one or more benchmarking scenarios with a specific document corpus. It defines for example the involved indices, data files and the operations that are invoked. Its most important attributes are:
+赛道是对具有特定文档库的一个或多个基准测试场景的规范。 例如，它定义了涉及的索引，数据文件和调用的操作。 它最重要的属性是：
 
-* One or more indices, each with one or more types
+* 一个或多个索引，每个索引包含一个或多个类型
 * The queries to issue
 * Source URL of the benchmark data
 * A list of steps to run, which we'll call "challenge", for example indexing data with a specific number of documents per bulk request or running searches for a defined number of iterations.
