@@ -7,25 +7,25 @@ Definition
 赛道是对具有特定文档库的一个或多个基准测试场景的规范。 例如，它定义了涉及的索引，数据文件和调用的操作。 它最重要的属性是：
 
 * 一个或多个索引，每个索引包含一个或多个类型
-* The queries to issue
-* Source URL of the benchmark data
-* A list of steps to run, which we'll call "challenge", for example indexing data with a specific number of documents per bulk request or running searches for a defined number of iterations.
+* 需要执行的查询
+* 压测数据的来源URL
+* 一系列需要运行的步骤，我们称之为“challenge”，例如，为每个批量请求使用特定数量的文档编制索引数据，或者对定义的迭代次数进行搜索。
 
-Track File Format and Storage
+赛道文件的格式和存储
 =============================
 
-A track is specified in a JSON file.
+一个赛道是在一个 JSON 文件中指定。
 
-Ad-hoc use
+临时使用
 ..........
 
-For ad-hoc use you can store a track definition anywhere on the file system and reference it with ``--track-path``, e.g::
+对于临时使用，你可以将赛道定义存储到文件系统的任意位置，并通过``--track-path``，例如::
 
-   # provide a directory - Rally searches for a track.json file in this directory
-   # Track name is "app-logs"
+   # 提供一个目录 - Rally 需要在这个目录中搜索 track.json 文件
+   # 赛道名称为 "app-logs"
    esrally --track-path=~/Projects/tracks/app-logs
-   # provide a file name - Rally uses this file directly
-   # Track name is "syslog"
+   # 提供一个文件 - Rally 直接使用这个文件
+   # 赛道名称为 "syslog"
    esrally --track-path=~/Projects/tracks/syslog.json
 
 Rally will also search for additional files like mappings or data files in the provided directory. If you use advanced features like :ref:`custom runners <adding_tracks_custom_runners>` or :ref:`parameter sources <adding_tracks_custom_param_sources>` we recommend that you create a separate directory per track.
