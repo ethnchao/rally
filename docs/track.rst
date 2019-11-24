@@ -28,16 +28,17 @@ Track Reference
    # 赛道名称为 "syslog"
    esrally --track-path=~/Projects/tracks/syslog.json
 
-Rally will also search for additional files like mappings or data files in the provided directory. If you use advanced features like :ref:`custom runners <adding_tracks_custom_runners>` or :ref:`parameter sources <adding_tracks_custom_param_sources>` we recommend that you create a separate directory per track.
+Rally 同时会在提供的目录中检索附加文件，例如映射、数据文件。如果你使用了高级功能例如 :ref:`custom runners <adding_tracks_custom_runners>` 或者 :ref:`parameter sources <adding_tracks_custom_param_sources>` ，我们推荐你为每个赛道创建一个独立的目录。
 
-Custom Track Repositories
+自定义赛道仓库
 .........................
 
-Alternatively, you can store Rally tracks also in a dedicated git repository which we call a "track repository". Rally provides a default track repository that is hosted on `Github <https://github.com/elastic/rally-tracks>`_. You can also add your own track repositories although this requires a bit of additional work. First of all, track repositories need to be managed by git. The reason is that Rally can benchmark multiple versions of Elasticsearch and we use git branches in the track repository to determine the best match for each track (based on the command line parameter ``--distribution-version``). The versioning scheme is as follows:
+另外，你可以在指定的git仓库中存储Rally赛道，我们称之为 "赛道仓库"。 Rally 提供了一个默认的赛道仓库，托管在 `Github <https://github.com/elastic/rally-tracks>`_. 你也可以添加你自己的赛道仓库，当然这需要额外的工作。首先，赛道仓库需要使用git管理。因为这样Rally才可以堆不同的Elasticsearch版本进行基准测试，我们使用赛道仓库中的git分支来判断每个赛道（基于命令行参数 ``--distribution-version`` ）的最佳匹配。版本结构如下：
 
-* The `master` branch needs to work with the latest `master` branch of Elasticsearch.
-* All other branches need to match the version scheme of Elasticsearch, i.e. ``MAJOR.MINOR.PATCH-SUFFIX`` where all parts except ``MAJOR`` are optional.
+* `master` 分支需要用在 Elasticsearch 最新的 `master` 分支
+* 所有其他的分支需要匹配 Elasticsearch 的分支结构，例如： ``MAJOR.MINOR.PATCH-SUFFIX`` 除了 ``MAJOR`` 之外的部分都是可选的。
 
+Rally 实现了一个Fallback逻辑，这样你可以不必为每个 Elasticsearch 的补丁发行版定义对应分支。例如：
 Rally implements a fallback logic so you don't need to define a branch for each patch release of Elasticsearch. For example:
 
 * The branch `6.0.0-alpha1` will be chosen for the version ``6.0.0-alpha1`` of Elasticsearch.
